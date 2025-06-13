@@ -19,19 +19,21 @@ from PIL import Image, ImageDraw
 # ==== CONSTANTS =======
 # ======================
 
-REMINDER_INTERVAL = 5  # seconds between reminders
-ANGER_THRESHOLD = 3    # reminders ignored before forced Wi-Fi disable
-DURATION_ON_ANGER = 1 * 10  # 40 minutes in seconds
-DURATION_ON_MANUAL = 1 * 10 # 20 minutes in seconds
+# REMINDER_INTERVAL = 5  # seconds between reminders
+# ANGER_THRESHOLD = 3    # reminders ignored before forced Wi-Fi disable
+# DURATION_ON_ANGER = 1 * 10  # 40 minutes in seconds
+# DURATION_ON_MANUAL = 1 * 10 # 20 minutes in seconds
+
+
 NOTIFICATION_DURATION_NEUTRAL = 1200  # ms
 NOTIFICATION_DURATION_ANGRY = 0 # ms
 NOTIFICATION_DURATION_DISABLED = 2400  # ms
 
 
-# REMINDER_INTERVAL = 10  # seconds between reminders
-# ANGER_THRESHOLD = 10    # reminders ignored before forced Wi-Fi disable
-# DURATION_ON_ANGER = 40 * 60  # 40 minutes in seconds
-# DURATION_ON_MANUAL = 20 * 60 # 20 minutes in seconds
+REMINDER_INTERVAL = 10  # seconds between reminders
+ANGER_THRESHOLD = 10    # reminders ignored before forced Wi-Fi disable
+DURATION_ON_ANGER = 40 * 60  # 40 minutes in seconds
+DURATION_ON_MANUAL = 20 * 60 # 20 minutes in seconds
 
 
 
@@ -145,14 +147,14 @@ class TaskReminder:
 
     def disable_wifi(self):
         try:
-            # subprocess.run(["netsh", "interface", "set", "interface", WIFI_INTERFACE_NAME, "admin=disable"], check=True)
+            subprocess.run(["netsh", "interface", "set", "interface", WIFI_INTERFACE_NAME, "admin=disable"], check=True)
             print("Wi-Fi disabled.")
         except subprocess.CalledProcessError as e:
             print("Error disabling Wi-Fi:", e)
 
     def enable_wifi(self):
         try:
-            # subprocess.run(["netsh", "interface", "set", "interface", WIFI_INTERFACE_NAME, "admin=enable"], check=True)
+            subprocess.run(["netsh", "interface", "set", "interface", WIFI_INTERFACE_NAME, "admin=enable"], check=True)
             print("Wi-Fi re-enabled.")
         except subprocess.CalledProcessError as e:
             print("Error enabling Wi-Fi:", e)
