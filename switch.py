@@ -175,12 +175,17 @@ class TaskReminder:
         """Manually add 20 minutes of Wi-Fi disable"""
         self.add_disable_time(DURATION_ON_MANUAL)
 
+    def disable_wifi_temp_long(self):
+        """Manually add 1 hour of Wi-Fi disable"""
+        self.add_disable_time(DURATION_ON_MANUAL*3)
+
     def run(self):
         self.reminder_thread.start()
         self.wifi_thread.start()
         self.menu_icon = Menu(
             MenuItem("Exit", self.on_exit),
-            MenuItem("Disable Wifi (+20 min)", self.disable_wifi_temp)
+            MenuItem("Disable Wifi (+20 min)", self.disable_wifi_temp),
+            MenuItem("Disable Wifi (+1 hour)", self.disable_wifi_temp_long)
         )
         self.icon = Icon("Task Reminder", self.create_icon(), menu=self.menu_icon)
         self.icon.run()
